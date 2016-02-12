@@ -229,7 +229,7 @@ protected:
      * @param callback Handler to call back with completion information
      */
     void pre_init(init_handler callback) {
-        // TODO: is this the best way to check whether this function is 
+        // TODO: is this the best way to check whether this function is
         //       available in the version of OpenSSL being used?
         // TODO: consider case where host is an IP address
 #if OPENSSL_VERSION_NUMBER >= 0x90812f
@@ -334,7 +334,7 @@ protected:
      * @param ec The error code to translate_ec
      * @return The translated error code
      */
-    lib::error_code translate_ec(boost::system::error_code ec) {
+    lib::error_code translate_ec(lib::asio::error_code ec) {
         if (ec.category() == lib::asio::error::get_ssl_category()) {
             if (ERR_GET_REASON(ec.value()) == SSL_R_SHORT_READ) {
                 return make_error_code(transport::error::tls_short_read);
